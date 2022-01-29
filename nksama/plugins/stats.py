@@ -12,19 +12,13 @@ grps = users_db['GROUPS']
 @bot.on_message(filters.command("stats"))
 def stats(_,message):
   users = col.find({})
-  mfs = []
-  for x in users:
-    mfs.append(x['user_id'])
-    
+  mfs = [x['user_id'] for x in users]
   total = len(mfs)
-  
+
   grp = grps.find({})
-  grps_ = []
-  for x in grp:
-    grps_.append(x['chat_id'])
-    
+  grps_ = [x['chat_id'] for x in grp]
   total_ = len(grps_)
-  
+
   bot.send_message(message.chat.id , f"Total Users: {total}\nTotal Groups: {total_}")
   
 
